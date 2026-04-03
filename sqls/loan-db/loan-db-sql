@@ -1,0 +1,52 @@
+CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL UNIQUE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE loans (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT NOT NULL,
+amount DECIMAL(12,2) NOT NULL,
+status VARCHAR(50) DEFAULT 'pending',
+interest_rate DECIMAL(5,2),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE payments (
+id INT AUTO_INCREMENT PRIMARY KEY,
+loan_id INT NOT NULL,
+amount DECIMAL(12,2) NOT NULL,
+payment_date DATE,
+FOREIGN KEY (loan_id) REFERENCES loans(id)
+);
+
+INSERT INTO users (name, email) VALUES
+('Amit Sharma', '[amit@test.com](mailto:amit@test.com)'),
+('Neha Verma', '[neha@test.com](mailto:neha@test.com)'),
+('Rahul Singh', '[rahul@test.com](mailto:rahul@test.com)'),
+('Priya Jain', '[priya@test.com](mailto:priya@test.com)'),
+('Karan Mehta', '[karan@test.com](mailto:karan@test.com)');
+
+INSERT INTO loans (user_id, amount, status, interest_rate) VALUES
+(1, 50000, 'approved', 10.5),
+(1, 20000, 'pending', 11.0),
+(2, 75000, 'approved', 9.5),
+(3, 100000, 'rejected', 12.0),
+(4, 30000, 'approved', 10.0),
+(5, 45000, 'pending', 11.5),
+(2, 60000, 'approved', 9.8),
+(3, 15000, 'pending', 13.0);
+
+INSERT INTO payments (loan_id, amount, payment_date) VALUES
+(1, 10000, '2024-01-10'),
+(1, 15000, '2024-02-10'),
+(3, 20000, '2024-01-15'),
+(5, 10000, '2024-03-01'),
+(7, 25000, '2024-02-20');
+
+CREATE INDEX idx_loans_user_id ON loans(user_id);
+CREATE INDEX idx_loans_status ON loans(status);
+CREATE INDEX idx_payments_loan_id ON payments(loan_id);

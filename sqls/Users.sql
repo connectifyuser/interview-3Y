@@ -1,0 +1,2 @@
+INSERT INTO `Users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES (1, 'vinay', 'vk@yopmail.com', '$2a$10$wvK93GzMTxbJLdPWG54y2ext1BQq1JqQ42aX2Zz031XVCjsJYrgLO', '2026-04-03 04:37:41', '2026-04-03 04:37:41');
+INSERT INTO `Users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES (4, 'vinay', 'vkk@yopmail.com', '$2a$10$rLcetV4x55TAGCdF/q2X4.pwGWSVKx8F6eoe0eJXehs0T5KscnH6G', '2026-04-03 04:41:53', '2026-04-03 04:41:53');
